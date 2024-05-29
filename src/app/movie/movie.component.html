@@ -1,0 +1,74 @@
+<body class="bg-img">
+
+
+  <div class="jumbotron" *ngIf="viewList">
+    <h3 class="text-center"> Movie List</h3>
+    <table border="1" class="table">
+      <th>MovieId</th>
+      <th>MovieName</th>
+      <th>MovieGenre</th>
+      <th>MovieHours</th>
+      <th>Language</th>
+      <th>Description</th>
+      <th>Theatre Id</th>
+
+      <tr *ngFor="let m of movies">
+        <td>{{m.movieId}} </td>
+        <td>{{m.movieName}} </td>
+        <td>{{m.movieGenre}} </td>
+        <td>{{m.movieHours}} </td>
+        <td>{{m.language}} </td>
+        <td>{{m.description}} </td>
+        <td>{{m.theatre.theatreId}}</td>
+
+      </tr>
+    </table>
+  </div>
+
+  <div class="container">
+    <form #frm="ngForm" class="form-group jumbotron">
+      MovieId<input #refid="ngModel" type="number" pattern="[0-9]{2,9}" required name="movie.movieId" width="20" [(ngModel)]="movie.movieId"
+        class="form-control" /><br>
+      <div *ngIf="refid.invalid" class="alert alert-danger">
+        MovieId Must Be filled
+      </div>
+      MovieName<input type="text" #refname="ngModel" required name="movie.movieName" width="20"
+        [(ngModel)]="movie.movieName" class="form-control" /><br>
+      <div *ngIf="refname.invalid" class="alert alert-danger ">
+        Please Enter A Movie Name
+      </div>
+      MovieGenre<input #refgenre="ngModel" type="text" required name="movie.movieGenre" width="20"
+        [(ngModel)]="movie.movieGenre" class="form-control" /><br>
+      <div *ngIf="refgenre.invalid" class="alert alert-danger ">
+        Please Enter A MovieGenre
+      </div>
+      MovieHours<input #refhr="ngModel" type="text" required name="movie.movieHours" width="20"
+        [(ngModel)]="movie.movieHours" class="form-control" /><br>
+      <div *ngIf="refhr.invalid" class="alert alert-danger ">
+        Please Enter MovieHours
+      </div>
+      Language<input type="text" #reflang="ngModel" required name="movie.language" width="20"
+        [(ngModel)]="movie.language" class="form-control" /><br>
+      <div *ngIf="reflang.invalid" class="alert alert-danger">
+        Please Enter The Movie Language
+      </div>
+      Description<input type="text" #refdesc="ngModel" required name="movie.description" width="20" [(ngModel)]="movie.description"
+        class="form-control" /><br>
+        <div *ngIf="refid.invalid" class="alert alert-danger">
+          Please describe about movie
+        </div>
+      TheatreId<input #reftid="ngModel" type="number" pattern="[0-9]{2,9}" required name="movie.theatre.theatreId"
+        width="20" [(ngModel)]="movie.theatre.theatreId" class="form-control" /><br>
+      <div *ngIf="refid.invalid" class="alert alert-danger">
+        Theatre Id Must Be filled
+      </div>
+
+      <button [disabled]="!frm.valid" (click)="AddMovie()" class="btn  btn-outline-primary">AddMovie</button> &nbsp;&nbsp;
+      <button [disabled]="!refid.valid" (click)="DeleteMovie()" class="btn  btn-outline-danger">DeleteMovie</button>&nbsp;&nbsp;
+      <button [disabled]="!frm.valid" (click)="UpdateMovie()" class="btn  btn-outline-primary">UpdateMovie</button>&nbsp;&nbsp;
+      <button  [disabled]="!refid.valid" (click)="ViewMovie()" class="btn btn-outline-success">ViewMovie</button> &nbsp;&nbsp;
+      <button (click)="ViewMovieList()" class="btn btn-outline-success">ViewMovieList</button> &nbsp;&nbsp;
+
+    </form>
+  </div>
+</body>

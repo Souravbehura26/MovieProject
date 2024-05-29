@@ -1,0 +1,71 @@
+<div class="panel panel-primary" *ngIf="viewList">
+    <h2 class="panel panel-title" style="color: cadetblue;">Customer list</h2>
+    <table border="1" clas=" table table-hover">
+        <th>Customer Id</th>
+        <th>Customer Name</th>
+        <th>Customer Address</th>
+        <th>Customer MobileNumber</th>
+        <th>Customer EmailId</th>
+        <th>Customer Password</th>
+
+        <tr *ngFor="let c of customers">
+            <td>{{c.customerId}}</td>
+            <td>{{c.customerName}}</td>
+            <td>{{c.address}}</td>
+            <td>{{c.mobileNumber}}</td>
+            <td>{{c.email}}</td>
+            <td>{{c.password}}</td>
+        </tr>
+    </table>
+</div>
+<div class="container">
+    <h2 text-align="center">Customer details</h2>
+    <form #frm="ngForm" class="form-group">
+
+        Customer ID <span style="color:red">*</span>
+        <input #refid="ngModel" type="text" pattern="[0-9]{2,4}" required name="customer.customerId" width="20"
+            [(ngModel)]="customer.customerId" class="form-control" /><br>
+        <div *ngIf="refid.invalid" class="alert alert-danger">
+            Customer ID must be within 2-4 digits
+        </div>
+        Customer Name <span style="color:red">*</span>
+        <input #refname="ngModel" pattern="^[A-Za-z\\s]+$" type="text" required  width="20" name="customer.customerName"
+            [(ngModel)]="customer.customerName" class="form-control" /><br>
+        <div *ngIf="refname.invalid" class="alert alert-danger">
+            Customer name must be in the range 5-25 characters
+        </div>
+        Address <span style="color:red">*</span>
+        <input #refadd="ngModel" type="text" width="20" required name="customer.address" [(ngModel)]="customer.address"
+            class="form-control" /><br>
+        <div *ngIf="refadd.invalid" class="alert alert-danger">
+            Enter your address
+        </div>
+        Mobile Number <span style="color:red">*</span>
+        <input #refno="ngModel" pattern="[6789][0-9]{9}" required type="text" width="20" name="customer.mobileNumber"
+            [(ngModel)]="customer.mobileNumber" class="form-control" /><br>
+        <div *ngIf="refno.invalid" class="alert alert-danger">
+            invalid phone number
+        </div>
+
+        Email Address <span style="color:red">*</span>
+        <input type="email" #refmail="ngModel" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" width="20"
+        required name="customer.email" [(ngModel)]="customer.email" class="form-control" /><br>
+        <div *ngIf="refmail.invalid" class="alert alert-danger">
+            Please enter your valid email ID
+        </div>
+        Password <span style="color:red">*</span>
+        <input #refpw="ngModel" pattern="[A-Za-z]\w{7,14}$" type="password" width="20" name="customer.password"
+        required  [(ngModel)]="customer.password" class="form-control" /><br>
+        <div *ngIf="refpw.invalid" class="alert alert-danger">
+            password must be 7 to 16 characters with numeric digits and letter as the first character
+        </div>
+        <button [disabled]="!frm.valid" (click)="addCustomer()" class="btn btn-outline-info"> Add </button> &nbsp;&nbsp;
+        <button [disabled]="!frm.valid" (click)="updateCustomer()" class="btn btn-outline-success"> update </button>
+        &nbsp;&nbsp;
+        <button [disabled]="!refid.valid" (click)="deleteCustomer()" class="btn btn-outline-danger"> delete </button>
+        &nbsp;&nbsp;
+        <button [disabled]="!refid.valid" (click)="viewCustomer()" class="btn btn-outline-primary"> view by id </button>
+        &nbsp;&nbsp;
+        <button (click)="viewallcustomer()" class="btn btn-outline-primary"> view customer list </button>
+    </form>
+</div>

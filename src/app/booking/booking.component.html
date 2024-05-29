@@ -1,0 +1,136 @@
+<br>
+<!-- <div id="d3">
+  <table>
+    <tr>
+      <td><input type="search" width="10" placeholder="Enter Date to search" [(ngModel)]="spid"></td>
+      <td><button (click)="searchBooking(spid)" class="btn btn-primary">Search</button></td>
+    </tr>
+  </table>
+  <br>
+  <div *ngIf="checkdate">
+    <table border="2">
+      <th>TransactionId</th>
+      <th>BookingDate</th>
+      <th>TransactionMode</th>
+      <th>TransactionStatus</th>
+      <th>TotalCost</th>
+      <th>Show Id</th>
+      <th>Customer Id</th>
+      <th>TicketId</th>
+      <tr *ngFor="let sb of searchedbookings">
+        <td>{{sb.transactionId}}</td>
+        <td>{{sb.bookingDate}}</td>
+        <td>{{sb.transactionMode}}</td>
+        <td>{{sb.transactionStatus}}</td>
+        <td>{{sb.totalCost}}</td>
+        <td>{{sb.show.showId}}</td>
+        <td>{{b.customer.customerId}}</td>
+        <td>{{b.ticket.ticketId}}</td>
+      </tr>
+    </table>
+  </div>
+</div>
+<hr> -->
+<div id="d1" *ngIf="showbookings">
+  <table border="2">
+    <th>TransactionId</th>
+    <th>BookingDate</th>
+    <th>TransactionMode</th>
+    <th>TransactionStatus</th>
+    <th>TotalCost</th>
+    <th>Show Id</th>
+    <th>Customer Id</th>
+    <th>TicketId</th>
+    <tr *ngFor="let b of bookings">
+      <td>{{b.transactionId}}</td>
+      <td>{{b.bookingDate}}</td>
+      <td>{{b.transactionMode}}</td>
+      <td>{{b.transactionStatus}}</td>
+      <td>{{b.totalCost}}</td>
+      <td>{{b.show.showId}}</td>
+      <td>{{b.customer.customerId}}</td>
+      <td>{{b.ticket.ticketId}}</td>
+    </tr>
+  </table>
+</div>
+<br>
+<div id="d2">
+  <form  #frm="ngForm" class="form-group">
+    <table style="text-align: left;">
+      <tr>
+        <th>TransactionId : <span style="color:red">*</span></th>
+        <td><input type="number" width="20" #refid="ngModel" required pattern="[0-9]{2,9}" name="booking.transactionId" [(ngModel)]="booking.transactionId" /></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td *ngIf="refid.invalid" class="alert alert-warning">TransactionId  must be a filled</td>
+      </tr>
+      <tr>
+        <th> BookingDate : <span style="color:red">*</span></th>
+        <td><input type="text" width="20" #refdate="ngModel" required name="booking.bookingDate" [(ngModel)]="booking.bookingDate" /></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td *ngIf="refdate.invalid" class="alert alert-warning">Please Enter Date</td>
+      </tr>
+      <tr>
+        <th>TransactionMode:<span style="color:red">*</span> </th>
+        <td><input type="text" width="20" #refmode="ngModel" required name="booking.transactionMode" [(ngModel)]="booking.transactionMode" /></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td *ngIf="refmode.invalid" class="alert alert-warning">Please Enter Mode Of Transaction</td>
+      </tr>
+      <tr>
+        <th>TransactionStatus: <span style="color:red">*</span> </th>
+        <td><input type="text" width="20" #refsts="ngModel" required name="booking.transactionStatus"[(ngModel)]="booking.transactionStatus" /></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td *ngIf="refsts.invalid" class="alert alert-warning">Please Enter Status</td>
+      </tr>
+      <tr>
+        <th>Total Cost: <span style="color:red">*</span> </th>
+        <td><input type="text" width="20" #refcost="ngModel" required name="booking.totalCost" [(ngModel)]="booking.totalCost" /></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td *ngIf="refcost.invalid" class="alert alert-warning">Please Enter Cost</td>
+      </tr>
+      <tr>
+        <th>Show Id: <span style="color:red">*</span>  </th>
+        <td><input type="number" width="20" #refshid="ngModel" required pattern="[0-9]{2,9}" name="booking.show.showId" [(ngModel)]="booking.show.showId" /></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td *ngIf="refshid.invalid" class="alert alert-warning">ShowId must be filled</td>
+      </tr>
+      <tr>
+        <th>Customer Id: <span style="color:red">*</span>  </th>
+        <td><input type="number" width="20" #refcuid="ngModel" required pattern="[0-9]{2,9}" name="booking.customer.customerId" [(ngModel)]="booking.customer.customerId" /></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td *ngIf="refcuid.invalid" class="alert alert-warning">CustomerId must be a filled</td>
+      </tr>
+      <tr>
+        <th>Ticket Id: <span style="color:red">*</span>  </th>
+        <td><input type="number" width="20" #reftid="ngModel" required  pattern="[0-9]{2,9}" name="booking.ticket.ticketId" [(ngModel)]="booking.ticket.ticketId" /></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td *ngIf="reftid.invalid" class="alert alert-warning">TicketId must be a filled</td>
+      </tr>
+    </table>
+    <br>
+    <button  (click)="viewAllBookings()" style="text-align: center;" class="btn btn-info">View All
+      Bookings</button>&nbsp;&nbsp;
+    <button [disabled]="!frm.valid" (click)="addBooking()" style="text-align: center;" class="btn btn-success">Add Booking</button>&nbsp;&nbsp;
+    <button [disabled]="!refid.valid" (click)="cancelBooking()" style="text-align: center;" class="btn btn-danger">Cancel
+      Booking</button>&nbsp;&nbsp;
+    <button [disabled]="!frm.valid" (click)="modifyBooking()" style="text-align: center;" class="btn btn-warning">Update
+      Booking</button>&nbsp;&nbsp;
+    <button [disabled]="!refid.valid" (click)="viewBooking()" style="text-align: center;" class="btn btn-info">Info A Booking</button>&nbsp;&nbsp;
+    <br>
+  </form>
+</div>

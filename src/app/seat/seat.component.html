@@ -1,0 +1,53 @@
+<div id="d1" *ngIf="viewseats">
+  <br>
+  <br>
+  <table border="2">
+    <th>Seat Id</th>
+    <th>Seat Number</th>
+    <th>Seat Type</th>
+    <th>Seat Price</th>
+    <th>Ticket Id</th>
+    <tr *ngFor="let s of seats">
+      <td>{{s.seatId}}</td>
+      <td>{{s.seatNumber}}</td>
+      <td>{{s.type}}</td>
+      <td>{{s.price}}</td>
+      <td>{{s.ticket.ticketId}}</td>
+    </tr>
+  </table>
+</div>
+<br>
+<div id="d2">
+  <form class="form-group">
+    <br>
+    <table style="text-align: left;">
+      <tr>
+        <th>Seat Id :</th>
+        <td><input #refid="ngModel" type="text" width="20" required name="seat.seatId" [(ngModel)]="seat.seatId" /></td>
+      </tr>
+      <tr>
+        <th> Seat Number :</th>
+        <td><input #refdate="ngModel" type="text" width="20" required name="seat.seatNumber"
+            [(ngModel)]="seat.seatNumber" /></td>
+      </tr>
+      <tr>
+        <th>Seat Type</th>
+        <td><input #refmode="ngModel" type="text" width="20" required name="seat.type" [(ngModel)]="seat.type" /></td>
+      </tr>
+      <tr>
+        <th>Seat Price</th>
+        <td><input #refmode="ngModel" type="text" width="20" required name="seat.price" [(ngModel)]="seat.price" /></td>
+      </tr>
+      <tr>
+        <th>Ticket Id :</th>
+        <td><input #refid="ngModel" type="text" width="20" required name="seat.ticket.ticketId"
+            [(ngModel)]="seat.ticket.ticketId" /></td>
+      </tr>
+    </table>
+    <br>
+    <button (click)="addSeat()" style="text-align: center;" class="btn btn-success">Add Seat</button>&nbsp;&nbsp;
+    <button (click)="cancelSeat()" style="text-align: center;" class="btn btn-danger">Cancel Seat</button>&nbsp;&nbsp;
+    <button (click)="viewAllSeat()" style="text-align: center;" class="btn btn-info">View All Seat</button>&nbsp;&nbsp;
+    <br>
+  </form>
+</div>

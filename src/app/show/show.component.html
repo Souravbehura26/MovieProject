@@ -1,0 +1,84 @@
+<div class="panel panel-primary" *ngIf="viewlist">
+    <table class="table table-bordered">
+        <th>Show Id</th>
+        <th>ShowStartTime</th>
+        <th>ShowEndTime</th>
+        <th>ShowName</th>
+        <th>Movie Id</th>
+        <th>Screen Id</th>
+        <th>Theatre Id</th>
+        <tr *ngFor="let s of shows">
+            <td> {{s.showId}}</td>
+            <td> {{s.showStartTime}}</td>
+            <td> {{s.showEndTime}}</td>
+            <td> {{s.showName}}</td>
+            <td>{{s.movie.movieId}}</td>
+            <td>{{s.screen.screenId}}</td>
+            <td>{{s.theatre.theatreId}}</td>
+        </tr>
+    </table>
+</div>
+
+<div class="jumbotron">
+    <form #frm="ngForm" class="form-group">
+        ShowId:-<span style="color: red;">*</span>
+        <input #refsid="ngModel" type="number" pattern="[0-9]{2,9}" required width="20" name="show.showId" [(ngModel)]="show.showId"
+            class="form-control" /><br>
+            <div *ngIf="refsid.invalid" class="alert alert-danger">
+                Show Id must be filled 
+            </div>
+
+        ShowStartTime:-<span style="color: red;">*</span>
+        <input #refsrtime="ngModel" type="text"  width="20" required name="show.showStartTime" [(ngModel)]="show.showStartTime"
+            class="form-control" /><br>
+            <div *ngIf="refsrtime.invalid" class="alert alert-danger">
+                 ShowStartTime must be filled
+            </div>
+
+        ShowEndTime:-<span style="color: red;">*</span>
+        <input #refentime="ngModel" type="text" width="20" required name="show.showEndTime" [(ngModel)]="show.showEndTime"
+            class="form-control" /><br>
+            <div *ngIf="refentime.invalid" class="alert alert-danger">
+                ShowEndTime must be filled
+           </div>
+
+        ShowName:-<span style="color:red">*</span>
+        <input #refname="ngModel" type="text" width="20" required name="show.showName" [(ngModel)]="show.showName"
+            class="form-control" /><br>
+            <div *ngIf="refname.invalid" class="alert alert-danger">
+                ShowName must be filled
+           </div>
+
+        MovieId:-<span style="color: red;">*</span>
+        <input #refmid="ngModel" type="number" pattern="[0-9]{2,9}" required name="movie.movieId" width="20" [(ngModel)]="show.movie.movieId"
+            class="form-control" /><br>
+            <div *ngIf="refmid.invalid" class="alert alert-danger">
+                Movie Id must be filled with 
+            </div>
+
+        ScreenId:-<span style="color: red;">*</span>
+        <input #refscid="ngModel" type="number" width="20" pattern="[0-9]{2,9}" required name="screen.screenId" [(ngModel)]="show.screen.screenId"
+            class="form-control" /><br>
+            <div *ngIf="refscid.invalid" class="alert alert-danger">
+                Screen Id must be filled 
+            </div>
+
+        TheaterId:-<span style="color: red;">*</span>
+        <input #reftid="ngModel" type="number" pattern="[0-9]{2,9}" required name="show.theatre.theatreId" width="20"
+            [(ngModel)]="show.theatre.theatreId" class="form-control" /><br>
+            <div *ngIf="reftid.invalid" class="alert alert-danger">
+                Theatre Id must be filled 
+            </div>
+
+
+
+        <button [disabled]="!refsid.valid" (click)="ViewShow()" class="btn  btn-info">ViewShow</button> &nbsp;&nbsp;
+        <button [disabled]="!frm.valid" (click)="AddShow()" class="btn  btn-success">AddShow</button> &nbsp;&nbsp;
+        <button [disabled]="!frm.valid" (click)="UpdateShow()" class="btn  btn-info">UpdateShow</button>&nbsp;&nbsp;
+        <button [disabled]="!refsid.valid" (click)="RemoveShow()" class="btn  btn-danger">RemoveShow</button>&nbsp;&nbsp;
+        <button  (click)="ViewAllShow()" class="btn  btn-primary">ViewAllShow</button>&nbsp;&nbsp;
+
+
+    </form>
+
+</div>

@@ -1,0 +1,56 @@
+<div class="panel panel-primary" *ngIf="viewList" >
+    <h3 class="panel panel-body text-center" > TheatreList</h3>
+      <table border="1" class="table table-hover" >
+        <th>TheatreId</th>
+        <th>TheatreName</th>
+        <th>TheatreCity</th>
+        <th>ManagerName</th>
+        <th>ManagerContact</th>
+        <tr *ngFor="let t of theatres">
+          <td>{{t.theatreId}} </td>
+          <td>{{t.theatreName}} </td>
+          <td>{{t.threatreCity}} </td>
+          <td>{{t.managerName}} </td>
+          <td>{{t.managerContact}} </td>
+        </tr>
+      </table>
+      <div id="err" *ngIf="haserror" style="color: red;">      
+        {{errormsg}}
+      </div>
+    </div>
+  
+  <div class="container">
+      <form #frm="ngForm" class="form-group jumbotron" >
+    TheaterId<span style="color:red">*</span>
+    <input #refid="ngModel" type="number" required pattern="[0-9]{2,9}"  name="theatre.theatreId" width="20" [(ngModel)]="theatre.theatreId" class="form-control"/><br>
+    <div *ngIf="refid.invalid" class="alert alert-danger" >
+      TheatreId must be fiiled
+    </div>
+    TheatreName<span style="color:red">*</span>
+    <input #refname="ngModel" type="text"  pattern="[a-zA-z]{2,100}" required name="theatre.theatreName" width="20" [(ngModel)]="theatre.theatreName" class="form-control"/><br>
+    <div *ngIf="refname.invalid" class="alert alert-danger ">
+      Please Enter A Theatre Name in Alphabets and Must be In range 2-100
+    </div>
+    TheatreCity<span style="color:red">*</span>
+    <input #refcity="ngModel" type="text" required  name="theatre.threatreCity" width="20" [(ngModel)]="theatre.threatreCity" class="form-control"/><br>
+   <div *ngIf="refcity.invalid" class="alert alert-danger">
+     Please Enter The Theatre City
+   </div>
+    TheatreManagerName<span style="color:red">*</span>
+    <input #refmname="ngModel" type="text" pattern="[a-zA-z]{2,100}" required  name="theatre.managerName" width="20" [(ngModel)]="theatre.managerName" class="form-control"/><br>
+    <div *ngIf="refmname.invalid" class="alert alert-danger">
+      Enter Your Theatre Manager name Must Be in range 2-100
+    </div>
+    TheatreManagerContact<span style="color:red">*</span>
+    <input #refcontact="ngModel" pattern="[7-9]{1}[0-9]{9}" type="text" required   name="theatre.managerContact" width="20" [(ngModel)]="theatre.managerContact" class="form-control"/><br>
+    <div *ngIf="refcontact.invalid" class="alert alert-danger">
+      Please Enter a valid Mobile Number Starting From (7,8,9)
+    </div>
+    
+    <button [disabled]= "!frm.valid" (click)="AddTheatre()" class="btn  btn-primary">AddTheatre</button> &nbsp;&nbsp;
+    <button [disabled]= "!refid.valid" (click)="DeleteTheatre()" class="btn btn-danger">DeleteTheatre</button> &nbsp;&nbsp;
+    <button [disabled]= "!frm.valid" (click)="UpdateTheatre()" class="btn  btn-primary">UpdateTheatre</button> &nbsp;&nbsp;
+    <button [disabled]= "!refid.valid" (click)="ViewTheatre()" class="btn  btn-success">ViewThetare</button> &nbsp;&nbsp;
+    <button (click)="ViewAllTheatre()" class="btn  btn-outline-success">ViewAllThetare</button> &nbsp;&nbsp;
+    </form>
+    </div>

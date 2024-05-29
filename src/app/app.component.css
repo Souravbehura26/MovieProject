@@ -1,0 +1,30 @@
+
+.app {
+    color: #b6b7b9;
+    background:darkgrey;
+    position: relative;
+    min-height: 90vh;
+  }
+  .navbar {
+    color: #b6b7b9;
+    background:darkslategray;
+    position: relative;
+  }
+  
+  .theme-btn:hover {
+    border: 1px solid #eb315a;
+    background: transparent;
+    color: #eb315a;
+  }
+  
+  .mainmenu li {
+    display: inline-block;
+  }
+  
+  .mainmenu li a.active,
+  .mainmenu li a:hover,
+  .mainmenu {
+    color: #eb315a;
+  }
+  
+  

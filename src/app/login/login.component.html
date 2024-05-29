@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <section id="login">
+        <div class="container">
+          <form [formGroup]="loginForm" (ngSubmit)="doLogin()">
+            <div class="d-flex justify-content-center h-100">
+              <div class="card">
+                <div class="card-header">
+                  <h3 style="color:cyan">Sign In</h3>
+                  <div class="d-flex justify-content-end social_icon"></div>
+                </div>
+                <div class="card-body">
+                  <div class="input-group form-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"
+                        ><i class="fas fa-user"></i
+                      ></span>
+                    </div>
+                    <input
+                      type="text"
+                      class="form-control"
+                      formControlName="userid"
+                      placeholder="UserId"
+                      pattern="[0-9]{1,9}"
+                      [(ngModel)]="login.user.userId"
+                      required
+                    />
+                  </div>
+                  <div class="input-group form-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fas fa-key"></i></span>
+                    </div>
+                    <input
+                      type="password"
+                      class="form-control"
+                      formControlName="password"
+                      placeholder="Password"
+                      [(ngModel)]="login.user.password"
+                      required
+                    />
+                  </div>
+                  <div class="row align-items-center remember">
+                    <input type="checkbox" />Remember Me
+                  </div>
+                  <span *ngIf="hasError" style="color: red">{{ errormsg }}</span>
+                  <div class="form-group">
+                    <button
+                      type="submit"
+                      value="Login"
+                      class="btn float-right login_btn"
+                    >
+                      Login
+                    </button>
+                  </div>
+                </div>
+                <hr />
+              </div>
+            </div>
+          </form>
+        </div>
+      </section>
+</body>
+</html>

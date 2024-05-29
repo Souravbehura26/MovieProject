@@ -1,0 +1,44 @@
+<div id="d1" *ngIf="viewtickets">
+  <br>
+  <br>
+  <table border="2">
+    <th>Ticket Id</th>
+    <th>No Of Seats</th>
+    <th>Ticket Satus</th>
+    <tr *ngFor="let t of tickets">
+      <td>{{t.ticketId}}</td>
+      <td>{{t.noOfSeats}}</td>
+      <td>{{t.ticketStatus}}</td>
+    </tr>
+  </table>
+  <br>
+</div>
+<br>
+<div id="d2">
+  <form #frm="ngForm" class="form-group">
+    <table style="text-align: left;">
+      <tr>
+        <th>TicketId :</th>
+        <td><input #refid="ngModel" type="text" width="20" required name="ticket.ticketId"
+            [(ngModel)]="ticket.ticketId" /></td>
+      </tr>
+      <tr>
+        <th> No Of Seats :</th>
+        <td><input #refno="ngModel" type="text" width="20" required name="ticket.noOfSeats"
+            [(ngModel)]="ticket.noOfSeats" /></td>
+      </tr>
+      <tr>
+        <th>Ticket Status: </th>
+        <td><input #refsts="ngModel" type="text" width="20" required name="ticket.ticketStatus"
+            [(ngModel)]="ticket.ticketStatus" /></td>
+      </tr>
+    </table>
+    <br>
+    <button (click)="viewTickets()" style="text-align: center;" class="btn btn-info">View All
+      Tickets</button>&nbsp;&nbsp;
+    <button (click)="addTicket()" style="text-align: center;" class="btn btn-success">Add Ticket</button>&nbsp;&nbsp;
+    <button (click)="cancelTicket()" style="text-align: center;" class="btn btn-danger">Cancel
+      Ticket</button>&nbsp;&nbsp;
+    <br>
+  </form>
+</div>

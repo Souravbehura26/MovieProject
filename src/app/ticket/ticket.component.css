@@ -1,0 +1,22 @@
+th {
+    text-align: center;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    padding-left: 6px;
+    padding-right: 15px;
+}
+
+td {
+    text-align: center;
+    padding-top: 4px;
+    padding-bottom: 6px;
+    padding-left: 4px;
+    padding-right: 6px;
+}
+
+#d1,
+#d2,
+table {
+    margin: auto;
+    text-align: center;
+}

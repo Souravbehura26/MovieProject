@@ -1,0 +1,26 @@
+.content-table  td,tr{
+    padding: 12px;
+    border-bottom: 1px solid rgba(229, 229, 229, 0.434) ;
+    background-color: rgba(16, 16, 16, 0.484);
+}
+.content-table  thead th{
+    background-color: #00000000;
+}
+/* .content-table tbody td,tr:nth-of-type(even){
+    background-color: hsla(120, 5%, 8%, 0);
+
+} */
+.content-table tbody td,tr:nth-of-type(odd){
+    background-color: rgba(233, 228, 228, 0.767);
+
+}
+
+#err{
+    text-align: center;
+}
+input.ng-valid{
+    border-left: 5px rgb(147, 186, 89) 
+}
+input.ng-invalid{
+    border-left: 5px rgb(181, 66, 37) 
+}
